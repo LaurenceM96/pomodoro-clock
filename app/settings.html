@@ -4,12 +4,29 @@
     <meta charset="UTF-8">
     <title>Pomodoro Clock</title>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="style.css">
 </head>
-<body style="background: white;">
-	<label for="workTime">Set time to work for:</label>
-    <input id="workTime" class="settingsInput"/><br><br>
-    <label for="breaktTime">Set time to relax for:</label>
-    <input id="breakTime" class="settingsInput"/><br>
-    <button type="button" class="btn" id="saveSettings">Save</button>
+<body style="background-color: #3B4248;">
+	<div class="settingsContainer">
+		<div class="workLabelDiv">
+			<p class="timeLabel">Work time</p>
+		</div>
+		<div class="workTimeDiv">
+	    	<input id="workTimeMins" class="settingsInput" maxlength="2"/>
+	    	<p>:</p>	
+	    	<input id="workTimeSecs" class="settingsInput" maxlength="2"/>
+		</div>
+		<div class="breakLabelDiv">
+	    	<p class="timeLabel">Break time</p>
+	    </div>
+	    <div class="breakTimeDiv">
+	    	<input id="breakTimeMins" class="settingsInput" maxlength="2"/>
+	    	<p>:</p>
+	    	<input id="breakTimeSecs" class="settingsInput" maxlength="2"/>
+	    </div>
+	    <div class="saveButtonDiv">
+	    	<button type="button" class="saveButton" id="saveSettings">Save</button>
+	    </div>
+    </div>
 </body>
 </html>
