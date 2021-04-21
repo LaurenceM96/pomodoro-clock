@@ -1,6 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
 
-	console.log("TEST")
 	//function to replace innerText of an element
 	const replaceText = (selector, text) => {
 	    const element = document.getElementById(selector)
@@ -34,7 +33,6 @@ window.addEventListener('DOMContentLoaded', () => {
 	let paused = false
 
 	playPauseLink.addEventListener('click', function(e) {
-		console.log('CLICK!')
 		playPauseLink.innerText = paused ? 'II' : '▶'
 		paused = !paused
 		return false
@@ -52,8 +50,21 @@ window.addEventListener('DOMContentLoaded', () => {
 	})
 
 	//initialise the times
-	let breakTime = 5
-	let workTime = 10
+	let workTimeMins = window.helpers.storeGet('workTimeMins')
+	let workTimeSecs = window.helpers.storeGet('workTimeSecs')
+	let workTime = 60*25
+	if (workTimeMins !== undefined && workTimeSecs !== undefined
+		&& workTimeMins != "" && workTimeSecs != "") {
+		workTime = parseInt(workTimeMins)*60 + parseInt(workTimeSecs)
+	}
+
+	let breakTimeMins = window.helpers.storeGet('breakTimeMins')
+	let breakTimeSecs = window.helpers.storeGet('breakTimeSecs')
+	let breakTime = 5*60
+	if (breakTimeMins !== undefined && breakTimeSecs !== undefined
+		&& breakTimeMins != "" && breakTimeSecs != "") {
+		breakTime = parseInt(breakTimeMins)*60 + parseInt(breakTimeSecs)
+	}
 	let currentTime = workTime
 	let workTimeBool = true;
 
@@ -87,6 +98,7 @@ window.addEventListener('DOMContentLoaded', () => {
 					changeStyle('a', 'color', 'black')
 					changeStyle('settingsButton', 'background-image', 'url("../app/settings_cog_black.png")')
 				}
+				replaceText('timerDiv', window.helpers.secondsToTime(currentTime))
 			}
 		}
 	}, 1000) //1000ms = 1sec; is what I assume the 1000 means.
